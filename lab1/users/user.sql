@@ -9,4 +9,11 @@ create table users(
 insert INTO users (first_name, last_name, email, phone)
 VALUES ('Amy', 'First', 'amy@test.ca', '123-123-1234'),
     ('Bob', 'Seconf', 'bob@test.ca', '234-567-1463'),
-    ('Cindy', 'Third', 'cindy@test.ca', '345-986-0476');
+    (
+        'Cindy',
+        'Third',
+        'cindy@test.ca',
+        '345-986-0476'
+    ),
+    ('Frank', 'Wow', 'frank@test.ca', '222-222-2222'),
+    ('Lorem', 'Haha', 'lorem@test.ca', '333-333-3344');
