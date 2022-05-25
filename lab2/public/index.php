@@ -1,12 +1,11 @@
 <?php
 
 require __DIR__ . '/../config.php';
+require __DIR__ . '/../escape.php';
 require __DIR__ . '/../Model/model.php';
 
 $results = generalQuery();
 
-var_dump($results);
-die;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,10 +32,29 @@ die;
 
         </div>
     </nav>
-    <div class="container">
+    <div class="container mt-5">
 
         <div class="row">
-            <div id="list" class="col"></div>
+            <div class="col">
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Genre</th>
+                        <th>Action</th>
+                    </tr>
+                    <div id="list">
+                        <?php foreach ($results as $key => $result) : ?>
+                        <tr>
+                            <td><?= esc($result['title']) ?></td>
+                            <td><?= esc($result['author']) ?></td>
+                            <td><?= esc($result['genre']) ?></td>
+                            <td><button class="btn btn-primary">View</button></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </div>
+                </table>
+            </div>
             <div id="detail" class="col"></div>
         </div>
 
