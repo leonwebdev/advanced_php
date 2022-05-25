@@ -17,7 +17,8 @@ $results = queryBySearch($_GET['search']);
         <td><?= esc($result['title']) ?></td>
         <td><?= esc($result['author']) ?></td>
         <td><?= esc($result['genre']) ?></td>
-        <td><button class="btn btn-primary">View</button></td>
+        <td><button class="btn btn-primary" onclick="showDetail(event, <?= esc_attr($result['id']) ?>)">View</button>
+        </td>
     </tr>
     <?php endforeach; ?>
 </tbody>

@@ -83,3 +83,48 @@ function queryBySearch(string $search): mixed
 
     return $results;
 }
+
+/**
+ * query one book
+ *
+ * @param   string  $search input from $_GET
+ *
+ * @return  mixed  return results in an array
+ */
+function queryOne(string $id): mixed
+{
+    global $dbh;
+
+    $query = "SELECT
+            book.title as title,
+            author.name as author,
+            genre.name as genre,
+            format.name as format,
+            book.year_published as year_published,
+            publisher.name as publisher,
+            book.description as description,
+            book.price as price,
+            book.image as image
+
+            FROM
+
+            book
+            INNER JOIN author ON book.author_id = author.author_id
+            INNER JOIN genre ON book.genre_id = genre.genre_id
+            INNER JOIN format ON book.format_id = format.format_id
+            INNER JOIN publisher ON book.publisher_id = publisher.publisher_id
+
+            WHERE
+            book.book_id = :book_placeholder
+            ";
+
+    $stmt = $dbh->prepare($query);
+
+    $stmt->bindValue(':book_placeholder', $id, PDO::PARAM_STR);
+
+    $stmt->execute();
+
+    $results = $stmt->fetch();
+
+    return $results;
+}

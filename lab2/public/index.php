@@ -25,8 +25,7 @@ $results = generalQuery();
             <a class="navbar-brand" href="#">Book List</a>
 
             <form class="d-flex">
-                <input class="form-control me-2" name="search" type="search" placeholder="Search"
-                    onkeyup="getSearch(event,this)" />
+                <input class="form-control me-2" name="search" type="search" placeholder="Search" onkeyup="getSearch(event,this)" />
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
 
@@ -44,16 +43,16 @@ $results = generalQuery();
                         <th>Action</th>
                     </tr>
                     <?php foreach ($results as $key => $result) : ?>
-                    <tr>
-                        <td><?= esc($result['title']) ?></td>
-                        <td><?= esc($result['author']) ?></td>
-                        <td><?= esc($result['genre']) ?></td>
-                        <td><button class="btn btn-primary">View</button></td>
-                    </tr>
+                        <tr>
+                            <td><?= esc($result['title']) ?></td>
+                            <td><?= esc($result['author']) ?></td>
+                            <td><?= esc($result['genre']) ?></td>
+                            <td><button class="btn btn-primary" onclick="showDetail(event, <?= esc_attr($result['id']) ?>)">View</button></td>
+                        </tr>
                     <?php endforeach; ?>
                 </table>
             </div>
-            <div id="detail" class="col"></div>
+            <div id="detail" class="col border py-3"></div>
         </div>
 
     </div>
