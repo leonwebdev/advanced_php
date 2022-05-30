@@ -7,6 +7,10 @@ $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
 ob_start();
 
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
+header("Access-Control-Allow-Methods: PUT, PATCH, POST, GET, OPTIONS, DELETE");
+
 $query = "SELECT
 book.book_id as id,
 book.title as title,
