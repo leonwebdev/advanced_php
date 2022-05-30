@@ -1,14 +1,7 @@
 <template>
     <div>
         <h1 class="mt-3 mb-5">Book List</h1>
-        <button
-            type="button"
-            class="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-        >
-            Launch demo modal
-        </button>
+
         <div
             class="modal fade"
             id="exampleModal"
