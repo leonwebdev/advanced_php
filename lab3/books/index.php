@@ -17,7 +17,10 @@ author.author_id as author_id,
 genre.name as genre,
 book.price as price,
 book.description as book_description,
-book.image as image
+book.image as image,
+format.name as format,
+publisher.name as publisher
+
 FROM
 book
 INNER JOIN author ON book.author_id = author.author_id
