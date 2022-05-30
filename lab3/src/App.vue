@@ -58,8 +58,8 @@
                 </tr>
 
                 <tr v-for="user in users" :key="user.id">
-                    <td><img v-bind:src="getImagePath(user.image)" /></td>
-                    <td v-html="user.title"></td>
+                    <td data-bs-toggle="modal" data-bs-target="#exampleModal" class="cursor_pointer" @click="setUser(user)"><img v-bind:src="getImagePath(user.image)" /></td>
+                    <td data-bs-toggle="modal" data-bs-target="#exampleModal" class="cursor_pointer" @click="setUser(user)" v-html="user.title"></td>
                     <td v-html="user.author"></td>
                     <td v-html="user.publisher"></td>
                     <td v-html="user.format"></td>
@@ -84,14 +84,19 @@ export default {
         getImagePath(img) {
             return "images/covers/" + img;
         },
+        setUser(user){
+          this.user = user
+          var myModal = document.getElementById("exampleModal")
+          myModal.show()
+        }
     },
     created() {
         fetch("http://localhost:8001")
             .then((resp) => resp.json())
             .then((json) => {
                 this.users = json;
-                console.log(this.users);
-                this.user = this.users[0];
+                //console.log(this.users);
+                //this.user = this.users[0];
             });
     },
 };
@@ -109,6 +114,9 @@ img {
 img.dtl_img {
     width: 70%;
     height: auto;
+}
+.cursor_pointer{
+  cursor: pointer;
 }
 
 </style>
