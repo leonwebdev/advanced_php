@@ -2,11 +2,11 @@
   <div>
     <NavBar @scroll="navscroll" />
     <div id="section">
-      <PageSection section_id="blog" section_title="Blog" sec_content="This is the Blog Content." />
+      <PageSection section_id="blog" section_title="Blog" sec_content="This is the Blog Content." bg="bg-secondary"/>
       <PageSection section_id="about" section_title="About" sec_content="This is the About Content." />
-      <PageSection section_id="shop" section_title="Shop" sec_content="This is the Shop Content." />
+      <PageSection section_id="shop" section_title="Shop" sec_content="This is the Shop Content." bg="bg-secondary"/>
       <PageSection section_id="featured" section_title="Featured" sec_content="This is the Featured Content." />
-      <PageSection section_id="contact" section_title="Contact" sec_content="This is the Contact Content." />
+      <PageSection section_id="contact" section_title="Contact" sec_content="This is the Contact Content." bg="bg-secondary"/>
     </div>
   </div>
 </template>
@@ -40,6 +40,6 @@ export default {
 
 body{
   padding-top: 1px;
-  padding-bottom: 10rem;
+  padding-bottom: 20rem;
 }
 </style>
