@@ -1,7 +1,7 @@
 <template>
     <div>
         <li class="nav-item">
-            <a class="nav-link" @click="$emit('scroll', target)" :data-target="target" href="#">{{ title
+            <a class="nav-link" @click="$emit('scroll', target)" :data-target="target" href="#">{{ str
             }}</a>
         </li>
     </div>
@@ -12,7 +12,7 @@ export default {
     name: "NavList",
     props: {
         target: String,
-        title: String,
+        str: String,
     },
 };
 </script>

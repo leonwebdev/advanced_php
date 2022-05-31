@@ -1,17 +1,22 @@
 <template>
-    <div></div>
+    <div>
+      <NavBar/>
+      <Section/>
+    </div>
 </template>
 
 <script>
 import Section from "./components/Section.vue";
 import NavBar from "./components/NavBar.vue";
+import Section from "./components/Section.vue";
 
 export default {
     name: "App",
     components: {
-        Section,
-        NavBar,
-    },
+    Section,
+    NavBar,
+    Section
+},
 };
 </script>
 
