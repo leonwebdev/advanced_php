@@ -1,13 +1,14 @@
-<template>
-
-</template>
+<template></template>
 
 <script>
-export default {
+import NavList from "NavList.vue";
 
-}
+export default {
+    name: "NavBar",
+    components: {
+        NavList,
+    },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
