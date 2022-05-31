@@ -1,5 +1,4 @@
 <template>
-    <div>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
 
@@ -8,11 +7,13 @@
                         <NavList @scroll="$emit('scroll', $event)" str="Home" target="#app" />
                         <NavList @scroll="$emit('scroll', $event)" str="Blog" target="#blog" />
                         <NavList @scroll="$emit('scroll', $event)" str="About" target="#about" />
+                        <NavList @scroll="$emit('scroll', $event)" str="Shop" target="#shop" />
+                        <NavList @scroll="$emit('scroll', $event)" str="Featured" target="#featured" />
+                        <NavList @scroll="$emit('scroll', $event)" str="Contact" target="#contact" />
                     </ul>
                 </div>
             </div>
         </nav>
-    </div>
 </template>
 
 <script>
