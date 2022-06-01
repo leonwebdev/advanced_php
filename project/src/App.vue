@@ -1,16 +1,16 @@
 <template>
   <h1 class="mb-5">Full CRUD</h1>
-
+  <ListView :users="users" />
 </template>
 
 <script>
-// import Modal from './components/Modal.vue'
+import ListView from './components/ListView.vue'
 
 export default {
   name: 'App',
-  // components: {
-  //   Modal
-  // },
+  components: {
+    ListView
+  },
   methods: {
     showListView() {
       // ReLoad Full List View
