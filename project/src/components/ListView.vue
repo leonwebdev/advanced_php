@@ -25,7 +25,7 @@
             ListItem,
         },
         props: {
-            users: Object,
+            users: Array,
         },
     };
 </script>

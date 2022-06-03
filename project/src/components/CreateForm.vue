@@ -30,7 +30,7 @@
                 v-model="local_user.phone"
             />
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>``
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </template>
 

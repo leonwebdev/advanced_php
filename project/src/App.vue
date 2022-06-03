@@ -20,7 +20,8 @@
                     ></button>
                 </div>
                 <div class="modal-body">
-                    <CreateForm :user="user" />
+                    <CreateForm v-if="!user.id" :user="user" />
+                    <CreateForm v-if="user.id" :user="user" />
                 </div>
             </div>
         </div>
@@ -30,7 +31,7 @@
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
         class="btn btn-success mb-5"
-        @click="createUser()"
+        @click="createUser"
     >
         Create
     </button>
@@ -59,20 +60,21 @@
             return {
                 api_url: "http://localhost:8001",
                 error: false,
-                users: {},
+                users: [],
                 user: false,
                 user_void: {
+                    id: "",
                     name: "",
                     email: "",
                     phone: "",
                 },
             };
         },
-        mounted() {
+        created() {
             fetch(this.api_url)
                 .then((resp) => resp.json())
                 .then((json) => {
-                    this.users = json.results;
+                    this.users = json.results.reverse();
                 });
             this.showListView();
         },
