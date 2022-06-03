@@ -46,7 +46,7 @@
     </button>
     <ListView
         @edituser="setUserByListItem"
-        @deleteuser="setUserByListItem"
+        @deleteuser="deleteUserByListItem"
         :users="users"
     />
 </template>
@@ -102,6 +102,27 @@
                 var options = {
                     method: "PUT",
                     body: JSON.stringify(edit_user),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                };
+                fetch(this.api_url, options)
+                    .then((resp) => resp.json())
+                    .then((json) => {
+                        console.log(json);
+                        if (json.status == "200") {
+                            this.user = this.user_void;
+                            this.success_message = json.message;
+                            this.showListView();
+                        } else {
+                            this.error_message = json.message;
+                        }
+                    });
+            },
+            deleteUserByListItem(list_user) {
+                var options = {
+                    method: "DELETE",
+                    body: JSON.stringify(list_user),
                     headers: {
                         "Content-Type": "application/json",
                     },
