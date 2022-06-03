@@ -10,7 +10,11 @@
             </tr>
 
             <tr v-for="user in users" :key="user.id">
-                <ListItem :user="user" />
+                <ListItem
+                    @edituser="$emit('edituser', $event)"
+                    @deleteuser="$emit('deleteuser', $event)"
+                    :user="user"
+                />
             </tr>
         </tbody>
     </table>

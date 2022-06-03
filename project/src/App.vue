@@ -25,6 +25,11 @@
                         :user="user"
                         @create="submitCreateUser"
                     />
+                    <EditForm
+                        v-if="user.id"
+                        :user="user"
+                        @edit="submitEditUser"
+                    />
                 </div>
             </div>
         </div>
@@ -34,22 +39,28 @@
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
         class="btn btn-success mb-5"
-        @click="createUser"
+        @click.prevent="createUser"
     >
         Create
     </button>
-    <ListView :users="users" />
+    <ListView
+        @edituser="setUserByListItem"
+        @deleteuser="setUserByListItem"
+        :users="users"
+    />
 </template>
 
 <script>
     import ListView from "./components/ListView.vue";
     import CreateForm from "./components/CreateForm.vue";
+    import EditForm from "./components/EditForm.vue";
 
     export default {
         name: "App",
         components: {
             ListView,
             CreateForm,
+            EditForm,
         },
         methods: {
             showListView() {
@@ -58,6 +69,9 @@
                     .then((json) => {
                         this.users = json.results.reverse();
                     });
+            },
+            setUserByListItem(list_user) {
+                this.user = list_user;
             },
             createUser() {
                 this.user = this.user_void;

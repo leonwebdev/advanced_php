@@ -4,8 +4,18 @@
     <td v-text="user.email"></td>
     <td v-text="user.phone"></td>
     <td>
-        <button class="btn btn-primary me-3">Edit</button>
-        <button class="btn btn-danger">Delete</button>
+        <button
+            @click.prevent="$emit('edituser', list_user)"
+            class="btn btn-primary me-3"
+        >
+            Edit
+        </button>
+        <button
+            @click.prevent="$emit('deleteuser', list_user)"
+            class="btn btn-danger"
+        >
+            Delete
+        </button>
     </td>
 </template>
 
@@ -14,6 +24,12 @@
         name: "ListItem",
         props: {
             user: Object,
+        },
+        emits: ["edituser", "deleteuser"],
+        data() {
+            return {
+                list_user: this.user,
+            };
         },
     };
 </script>
