@@ -35,6 +35,21 @@
         </div>
     </div>
 
+    <div
+        @click="error_message = ''"
+        v-if="error_message.length"
+        class="alert alert-danger"
+    >
+        {{ error_message }}
+    </div>
+    <div
+        @click="success_message = ''"
+        v-if="success_message.length"
+        class="alert alert-success"
+    >
+        {{ success_message }}
+    </div>
+
     <h1 class="mb-5">Full CRUD</h1>
     <button
         data-bs-toggle="modal"
@@ -120,25 +135,27 @@
                     });
             },
             deleteUserByListItem(list_user) {
-                var options = {
-                    method: "DELETE",
-                    body: JSON.stringify(list_user),
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                };
-                fetch(this.api_url, options)
-                    .then((resp) => resp.json())
-                    .then((json) => {
-                        console.log(json);
-                        if (json.status == "200") {
-                            this.user = this.user_void;
-                            this.success_message = json.message;
-                            this.showListView();
-                        } else {
-                            this.error_message = json.message;
-                        }
-                    });
+                if (confirm("Are you sure to delete this record?") == true) {
+                    var options = {
+                        method: "DELETE",
+                        body: JSON.stringify(list_user),
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    };
+                    fetch(this.api_url, options)
+                        .then((resp) => resp.json())
+                        .then((json) => {
+                            console.log(json);
+                            if (json.status == "200") {
+                                this.user = this.user_void;
+                                this.success_message = json.message;
+                                this.showListView();
+                            } else {
+                                this.error_message = json.message;
+                            }
+                        });
+                }
             },
         },
         data() {
