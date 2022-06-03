@@ -34,6 +34,7 @@
             </div>
         </div>
     </div>
+
     <h1 class="mb-5">Full CRUD</h1>
     <button
         data-bs-toggle="modal"
@@ -89,6 +90,27 @@
                     .then((json) => {
                         console.log(json);
                         if (json.status == "201") {
+                            this.user = this.user_void;
+                            this.success_message = json.message;
+                            this.showListView();
+                        } else {
+                            this.error_message = json.message;
+                        }
+                    });
+            },
+            submitEditUser(edit_user) {
+                var options = {
+                    method: "PUT",
+                    body: JSON.stringify(edit_user),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                };
+                fetch(this.api_url, options)
+                    .then((resp) => resp.json())
+                    .then((json) => {
+                        console.log(json);
+                        if (json.status == "200") {
                             this.user = this.user_void;
                             this.success_message = json.message;
                             this.showListView();

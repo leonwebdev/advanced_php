@@ -5,6 +5,8 @@
     <td v-text="user.phone"></td>
     <td>
         <button
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
             @click.prevent="$emit('edituser', list_user)"
             class="btn btn-primary me-3"
         >
