@@ -20,8 +20,11 @@
                     ></button>
                 </div>
                 <div class="modal-body">
-                    <CreateForm v-if="!user.id" :user="user" />
-                    <CreateForm v-if="user.id" :user="user" />
+                    <CreateForm
+                        v-if="!user.id"
+                        :user="user"
+                        @create="submitCreateUser"
+                    />
                 </div>
             </div>
         </div>
@@ -50,10 +53,35 @@
         },
         methods: {
             showListView() {
-                // ReLoad Full List View
+                fetch(this.api_url)
+                    .then((resp) => resp.json())
+                    .then((json) => {
+                        this.users = json.results.reverse();
+                    });
             },
             createUser() {
                 this.user = this.user_void;
+            },
+            submitCreateUser(create_user) {
+                var options = {
+                    method: "POST",
+                    body: JSON.stringify(create_user),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                };
+                fetch(this.api_url, options)
+                    .then((resp) => resp.json())
+                    .then((json) => {
+                        console.log(json);
+                        if (json.status == "201") {
+                            this.user = this.user_void;
+                            this.success_message = json.message;
+                            this.showListView();
+                        } else {
+                            this.error_message = json.message;
+                        }
+                    });
             },
         },
         data() {
@@ -61,21 +89,23 @@
                 api_url: "http://localhost:8001",
                 error: false,
                 users: [],
-                user: false,
+                user: {
+                    id: "",
+                    name: "",
+                    email: "",
+                    phone: "",
+                },
                 user_void: {
                     id: "",
                     name: "",
                     email: "",
                     phone: "",
                 },
+                success_message: "",
+                error_message: "",
             };
         },
         created() {
-            fetch(this.api_url)
-                .then((resp) => resp.json())
-                .then((json) => {
-                    this.users = json.results.reverse();
-                });
             this.showListView();
         },
     };

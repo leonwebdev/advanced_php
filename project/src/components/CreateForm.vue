@@ -7,7 +7,7 @@
                 class="form-control"
                 id="name"
                 name="name"
-                v-model="local_user.name"
+                v-model="create_user.name"
             />
         </div>
         <div class="mb-3">
@@ -17,7 +17,7 @@
                 class="form-control"
                 id="email"
                 name="email"
-                v-model="local_user.email"
+                v-model="create_user.email"
             />
         </div>
         <div class="mb-3">
@@ -27,10 +27,18 @@
                 class="form-control"
                 id="phone"
                 name="phone"
-                v-model="local_user.phone"
+                v-model="create_user.phone"
             />
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            type="submit"
+            class="btn btn-primary"
+            @click.prevent="submitCreate"
+        >
+            Submit
+        </button>
     </form>
 </template>
 
@@ -42,8 +50,19 @@
         },
         data() {
             return {
-                local_user: this.user,
+                create_user: this.user,
             };
+        },
+        methods: {
+            submitCreate() {
+                this.$emit("create", this.create_user);
+                this.create_user = {
+                    id: "",
+                    name: "",
+                    email: "",
+                    phone: "",
+                };
+            },
         },
     };
 </script>
